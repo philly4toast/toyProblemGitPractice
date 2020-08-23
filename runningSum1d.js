@@ -1,4 +1,4 @@
-What is “destructuring” 
+
 
 // Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
 
@@ -28,7 +28,13 @@ What is “destructuring”
 // -10^6 <= nums[i] <= 10^6
 
 var runningSum = function(nums) {
-    
+    var total = 0;
+    var results = [];
+    for (var i = 0; i < nums.length; i++){
+        total += nums[i];
+        results.push(total);
+    }
+    return results;
 };
 
 
@@ -38,18 +44,16 @@ var runningSum = function(nums) {
 
 
 //assert arrays equal
-function assertEqual(actual, expected, testName){
-    if (actual.length === expected.length) {
-        for (var i = 0; i < actual.length; i++){
-            if (actual[i] !== expected[i]){
-                console.log(testName + 'failed') 
-                break;
-            }
+function assertArraysEqual(actual, expected, testName){
+    var equalLength = (actual.length === expected.length)
+    var equalValues = true;
+    for (var i = 0; i < expected.length; i++){
+        if (actual[i] !== expected[i]){
+            equalValues = false;
         }
-    }else {
-        console.log(testName + 'failed') 
     }
-    console.log('passed')
+    console.log(equalLength && equalValues ? 'passed' : 'failed ' + testName + '. Expected ' + expected + ', but got ' + actual + '.')
+    // console.log(JSON.stringify(actual) === JSON.stringify(expected) ? 'passed' : 'failed ' + testName + '. Expected ' + expected + ', but got ' + actual '.')
 }
 
 
@@ -62,8 +66,3 @@ let expected1 = [1,5,8]
 let actual1 = runningSum(input1)
 
 let input2 = [1,1,1,1,1]
-let expected2 = [1,2,3,4,5]
-let actual2 = runningSum(input2)
-
-assertEqual([1,2,3],[1,5,3], 'two equal arrays')
-
