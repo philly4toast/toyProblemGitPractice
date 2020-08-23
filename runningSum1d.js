@@ -66,3 +66,8 @@ let expected1 = [1,5,8]
 let actual1 = runningSum(input1)
 
 let input2 = [1,1,1,1,1]
+let expected2 = [1,2,3,4,5]
+let actual2 = runningSum(input2)
+
+console.log(actual2)
+
